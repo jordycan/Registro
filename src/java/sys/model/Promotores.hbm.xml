@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/02/2018 08:37:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sys.model.Promotores" table="promotores" catalog="registro_personas" optimistic-lock="version">
+        <id name="idPromotor" type="java.lang.Integer">
+            <column name="idPromotor" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="municipios" class="sys.model.Municipios" fetch="select">
+            <column name="idLocalidad" not-null="true" />
+        </many-to-one>
+        <property name="nombreCompleto" type="string">
+            <column name="nombreCompleto" length="100" not-null="true" />
+        </property>
+        <set name="personases" table="personas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPromotor" not-null="true" />
+            </key>
+            <one-to-many class="sys.model.Personas" />
+        </set>
+    </class>
+</hibernate-mapping>

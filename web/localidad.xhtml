@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>Localidad</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    
+        <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+        <meta name="author" content="GetTemplates.co" />
+
+        <!-- Facebook and Twitter integration -->
+        <meta property="og:title" content=""/>
+        <meta property="og:image" content=""/>
+        <meta property="og:url" content=""/>
+        <meta property="og:site_name" content=""/>
+        <meta property="og:description" content=""/>
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:image" content="" />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:card" content="" />
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet"/>
+
+        <!-- Animate.css -->
+
+        <h:outputStylesheet name="/css/icomoon.css"/>
+        <h:outputStylesheet name="/css/animate.css"/>
+        <h:outputStylesheet name="/css/themify-icons.css"/>
+        <h:outputStylesheet name="/css/bootstrap.css"/>
+        <h:outputStylesheet name="/css/magnific-popup.css"/>
+        <h:outputStylesheet name="/css/bootstrap-datetimepicker.min.css"/>
+        <h:outputStylesheet name="/css/owl.carousel.min.css"/>
+        <h:outputStylesheet name="/css/owl.theme.default.min.css"/>
+        <h:outputStylesheet name="/css/style2.css"/>
+        
+        <!-- Icomoon Icon Fonts-->
+
+        <!-- Themify Icons-->
+
+
+        <!-- Magnific Popup -->
+
+        <!-- Owl Carousel  -->
+
+
+        <!-- Modernizr JS -->
+        <script src="/js/modernizr-2.6.2.min.js"></script>
+        <!-- FOR IE9 below -->
+        <!--[if lt IE 9]>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+    </h:head>
+    <h:body>
+
+        <div class="gtco-loader"></div>
+
+        <div id="page">
+
+
+            <!-- <div class="page-inner"> -->
+            <nav class="gtco-nav" role="navigation">
+                <div class="gtco-container">
+
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12">
+                            <div id="gtco-logo"><a href="index.xhtml">
+                                    <img  alt="morena" src="images/MORENA.png" width="200" height="50"/>
+                                </a>
+                            
+                            </div>
+                        </div>
+                        <div class="col-xs-8 text-right menu-1">
+                            <ul>
+                               <a href="personas.xhtml">Personas</a>
+                              
+                                    <a href="localidad.xhtml">Localidad</a>
+                                    <a href="promotores.xhtml">Promotores</a>
+                                
+                                <a href="consultas.xhtml">Consultas</a>
+
+                            </ul>	
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+
+            <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"  style="background-image: url(images/morena.jpg)" data-stellar-background-ratio="0.5">
+                <div></div>
+                <div>
+                  <div>
+
+
+            <main role="main" class="container">
+
+                <div>
+                  
+                    <br/><br/>
+
+                    <div class="panel-body">
+                        <h:form><br/>
+                            <p:commandButton value="Nueva Localidad" actionListener="#{beanMunicipios.prepararNuevoMunicipio(actionEvent)}"  oncomplete="PF('dlgNuevo').show();" 
+                                             update=":formInsertar" style="font-size: 12px;" />
+                            <p:growl id="mensajeGeneral" autoUpdate="true" showDetail="true" life="3000" />
+
+                            <br/>
+                        </h:form> 
+                        <p:dialog id="dlgNuevoMunicipio" header="Nueva Localidad" widgetVar="dlgNuevo" showEffect="drop" hideEffect="drop" modal="true">
+                            <h:form id="formInsertar">
+
+                                <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                                    <p:outputLabel value="Localidad"/>
+                                    <p:inputText value="#{beanMunicipios.municipios.municipio}"
+                                                 required="true" requiredMessage="Localidad es obligatorio"/>
+
+                                    <p:commandButton value="Guardar" actionListener="#{beanMunicipios.insertarMunicipio()}"  
+                                                     oncomplete="PF('dlgNuevo').hide();" update=":formMostrarMunicipios:tablaMostrarMunicipios :formInsertar"/>
+                                    <p:commandButton value="Cancelar"
+                                                     update=":formInsertar" immediate="true" 
+                                                     onclick="PF('dlgNuevo').hide();" /> 
+
+
+                                </h:panelGrid>
+                            </h:form>
+                        </p:dialog>
+
+                      <br/>
+                        <h:form id="formMostrarMunicipios">
+                            <p:dataTable id="tablaMostrarMunicipios" var="master" value="#{beanMunicipios.verMunicipios}"
+                                         emptyMessage="No hay datos" style="font-size: 11px;">
+
+                                <p:column headerText="Id Localidad ">
+                                    <h:outputText value="#{master.idLocalidad}"/>
+                                </p:column>
+                                <p:column headerText="Localidad ">
+                                    <h:outputText value="#{master.municipio}"/>
+                                </p:column>
+
+                                <p:column headerText="Editar - Eliminar">
+                                    <p:commandButton value="Modificar" oncomplete="PF('dlgEditar').show();" class="btn btn-info"
+                                                     update=":formActualizar ">
+                                        <f:setPropertyActionListener target="#{beanMunicipios.municipios}" value="#{master}"/>
+                                    </p:commandButton>
+                                    
+                                    <p:commandButton value="Eliminar" oncomplete="PF('dlgEliminar').show();" class="btn btn-danger"
+                                                     update=":formEliminarMunicipio" >
+                                        <f:setPropertyActionListener target="#{beanMunicipios.municipios}" value="#{master}"/>
+                                    </p:commandButton>
+                                </p:column>
+
+
+                            </p:dataTable>
+                        </h:form>
+
+                        <p:dialog id="dlgActulizarMunicipio" header="Editar Registro" widgetVar="dlgEditar" showEffect="drop" hideEffect="drop" modal="true">
+                            <h:form id="formActualizar">
+                                <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                                    <p:outputLabel value="ID"/>
+                                    <p:inputText value="#{beanMunicipios.municipios.idLocalidad}"
+                                                 disabled="true" required="true" requiredMessage="El ID es obligatorio"/>
+
+                                    <p:outputLabel value="Localidad"/>
+                                    <p:inputText value="#{beanMunicipios.municipios.municipio}"
+                                                 required="true" requiredMessage="Localidad es obligatoria"/>
+
+
+
+
+                                    <p:commandButton value="Guardar Cambios" actionListener="#{beanMunicipios.actualiazrMunicipios()}" 
+                                                     oncomplete="PF('dlgEditar').hide();" update=":formMostrarMunicipios:tablaMostrarMunicipios"/>
+                                    <p:commandButton value="Cancelar" onclick="PF('dlgEditar').hide();" 
+                                                     immediate="true" />
+
+                                </h:panelGrid>
+                            </h:form>
+
+                        </p:dialog>
+                        
+                        
+                        <p:dialog id="dlgE" header="Eliminar Datos" widgetVar="dlgEliminar" showEffect="drop"
+                                  hideEffect="drop" modal="true">
+                            <h:form id="formEliminarMunicipio" style="font-size: 11px;">
+
+                                <h:outputText value="¿Desea eliminar este registro? 
+                                              ***NOTA: SI ELIMINA ESTA LOCALIDAD, SE ELIMINARAN LAS PERSONAS QUE ESTEN REGISTRADAS CON ESE MUNICIPIO"/> <br/><br/>
+                                <p:commandButton value="Si" actionListener="#{beanMunicipios.eliminarMunicipios()}"
+                                                 update=":formMostrarMunicipios:tablaMostrarMunicipios" onclick="PF('dlgEliminar').hide();" immediate="true"/>
+                                <p:commandButton value="No" onclick="PF('dlgEliminar').hide();"
+                                                 immediate="true"/>
+                            </h:form>
+                        </p:dialog>
+
+
+                        <!-- /.row (nested) -->
+                    </div>
+
+
+                </div>
+
+
+            </main>
+
+
+        </div>
+                </div>
+            </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <footer id="gtco-footer" role="contentinfo" style="background-image: url(images/img_bg_1.jpg)" data-stellar-background-ratio="0.5">
+                <div class="overlay"></div>
+                <div class="gtco-container">
+                    <div class="row row-pb-md">
+
+
+
+
+           
+
+                        <div class="col-md-12 text-center copyright">
+                            <p><small class="block">&copy; 2018 Todos los derechos Reservados</small> 
+                                <small class="block">Desarrollado por Conexiones del Camino Real</small></p>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </footer>
+            <!-- </div> -->
+
+        </div>
+
+        <div class="gototop js-top">
+            <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+        </div>
+       
+      
+       
+        <h:outputScript name="/js/jquery.waypoints.min.js"/>  
+        <h:outputScript name="/js/owl.carousel.min.js"/>  
+       
+        
+        <h:outputScript name="/js/jquery.magnific-popup.min.js"/>  
+        <h:outputScript name="/js/magnific-popup-options.js"/>  
+        <h:outputScript name="/js/moment.min.js"/>  
+        <h:outputScript name="/js/bootstrap-datetimepicker.min.js"/>  
+        <h:outputScript name="/js/main.js"/>  
+
+        <!-- jQuery -->
+
+        <!-- Bootstrap -->
+
+
+        <!-- Stellar Parallax -->
+        
+
+    </h:body>
+</html>
+

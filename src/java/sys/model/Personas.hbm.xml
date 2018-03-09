@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/02/2018 08:37:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sys.model.Personas" table="personas" catalog="registro_personas" optimistic-lock="version">
+        <id name="curp" type="string">
+            <column name="curp" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="municipios" class="sys.model.Municipios" fetch="select">
+            <column name="idLocalidad" not-null="true" />
+        </many-to-one>
+        <many-to-one name="promotores" class="sys.model.Promotores" fetch="select">
+            <column name="idPromotor" not-null="true" />
+        </many-to-one>
+        <property name="nombreCompleto" type="string">
+            <column name="nombreCompleto" length="100" not-null="true" />
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="apellidoPaterno" length="50" not-null="true" />
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="apellidoMaterno" length="50" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="20" not-null="true" />
+        </property>
+        <property name="seccion" type="string">
+            <column name="seccion" length="10" not-null="true" />
+        </property>
+        <property name="claveElectoral" type="string">
+            <column name="claveElectoral" length="50" not-null="true" />
+        </property>
+        <property name="fechaNacimineto" type="date">
+            <column name="fechaNacimineto" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,377 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>Consultas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
+        <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+        <meta name="author" content="GetTemplates.co" />
+
+        <!-- Facebook and Twitter integration -->
+        <meta property="og:title" content=""/>
+        <meta property="og:image" content=""/>
+        <meta property="og:url" content=""/>
+        <meta property="og:site_name" content=""/>
+        <meta property="og:description" content=""/>
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:image" content="" />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:card" content="" />
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet"/>
+
+        <!-- Animate.css -->
+
+        <h:outputStylesheet name="/css/icomoon.css"/>
+        <h:outputStylesheet name="/css/animate.css"/>
+        <h:outputStylesheet name="/css/themify-icons.css"/>
+        <h:outputStylesheet name="/css/bootstrap.css"/>
+        <h:outputStylesheet name="/css/magnific-popup.css"/>
+        <h:outputStylesheet name="/css/bootstrap-datetimepicker.min.css"/>
+        <h:outputStylesheet name="/css/owl.carousel.min.css"/>
+        <h:outputStylesheet name="/css/owl.theme.default.min.css"/>
+        <h:outputStylesheet name="/css/style2.css"/>
+
+        <!-- Icomoon Icon Fonts-->
+
+        <!-- Themify Icons-->
+
+
+        <!-- Magnific Popup -->
+
+        <!-- Owl Carousel  -->
+
+
+        <!-- Modernizr JS -->
+        <script src="/js/modernizr-2.6.2.min.js"></script>
+        <!-- FOR IE9 below -->
+        <!--[if lt IE 9]>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+    </h:head>
+    <h:body>
+
+        <div class="gtco-loader"></div>
+
+        <div id="page">
+
+
+            <!-- <div class="page-inner"> -->
+            <nav class="gtco-nav" role="navigation">
+                <div class="gtco-container">
+
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12">
+                            <div id="gtco-logo"><a href="index.xhtml">
+                                    <img  alt="morena" src="images/MORENA.png" width="200" height="50"/>
+                                </a>
+                            
+                            </div>
+                        </div>
+                        <div class="col-xs-8 text-right menu-1">
+                            <ul>
+                               <a href="personas.xhtml">Personas</a>
+                              
+                                    <a href="localidad.xhtml">Localidad</a>
+                                    <a href="promotores.xhtml">Promotores</a>
+                                
+                                <a href="consultas.xhtml">Consultas</a>
+
+
+                            </ul>	
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+
+            <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/morena.jpg)" data-stellar-background-ratio="0.5">
+                <div></div>
+                <div>
+
+
+                    <main>
+
+                        <div class="my-0 p-3 bg-white rounded box-shadow">
+
+                            <br/>
+
+                            <div class="panel-body">
+                                <h:form>
+
+                                    <p:growl id="mensajeGeneral" autoUpdate="true" life="3000" />
+
+
+                                </h:form> 
+
+                                <br/><br/>
+                                <h:form id="formMostrarPersonas">
+                                    <p:dataTable id="tablaMostrarPersonas" var="master" value="#{beanPersonas.filterPersonas}"                                             
+                                                 paginator="true" rows="10" style="margin-bottom:20px; font-size: 11px;">
+
+
+
+                                        <p:column filterBy="#{master.curp}">
+                                            <f:facet name="header">
+                                                <h:outputText value="CURP" />
+                                            </f:facet>
+                                            <h:outputText value="#{master.curp}" />
+                                        </p:column>
+
+                                        <p:column  filterBy="#{master.nombreCompleto} #{master.apellidoPaterno} #{master.apellidoMaterno}">
+                                            <f:facet name="header">
+                                                <h:outputText value="Nombre Completo"/>
+                                            </f:facet>
+                                            <h:outputText value="#{master.nombreCompleto} #{master.apellidoPaterno} #{master.apellidoMaterno}"  />
+                                        </p:column>
+
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Clave Electoral"/>
+                                            </f:facet>
+                                            <h:outputText value="#{master.claveElectoral}" />
+                                        </p:column>
+
+                                      
+
+                                        <p:column filterBy="#{master.municipios.municipio}">
+                                            <f:facet name="header">
+                                                <h:outputText value="Localidad"/>
+                                            </f:facet>
+                                            <h:outputText value="#{master.municipios.municipio}" />
+                                        </p:column>
+
+                                        <p:column filterBy="#{master.promotores.nombreCompleto}">
+                                            <f:facet name="header">
+                                                <h:outputText value="Promotor"/>
+                                            </f:facet>
+                                            <h:outputText value="#{master.promotores.nombreCompleto}" />
+                                        </p:column>
+
+                                        <p:column filterBy="#{master.seccion}"> 
+                                            <f:facet name="header">
+                                                <h:outputText value="Seccion"/>
+                                            </f:facet>
+                                            <h:outputText value="#{master.seccion}" />
+                                        </p:column>
+
+                                        <p:column >
+                                            <f:facet name="header">
+                                                <h:outputText value="Direccion"/>
+                                            </f:facet>
+                                            <h:outputText value="#{master.direccion}" />
+                                        </p:column>
+
+                                        <p:column exportable="false">
+                                            <f:facet name="header">
+                                                <h:outputText value="Editar-Eliminar"/>
+                                            </f:facet>
+                                            <p:commandButton value="Modificar" oncomplete="PF('dlgEditar').show();" class="btn btn-info"
+                                                             update=":formActualizar ">
+                                                <f:setPropertyActionListener target="#{beanPersonas.persona}" value="#{master}"/>
+                                            </p:commandButton>
+
+                                            <p:commandButton value="Eliminar" oncomplete="PF('dlgEliminar').show();" class="btn btn-danger"
+                                                             update=":formEliminarPersonas" >
+                                                <f:setPropertyActionListener target="#{beanPersonas.persona}" value="#{master}"/>
+                                            </p:commandButton>
+                                        </p:column>
+
+
+
+
+                                    </p:dataTable>
+
+                                    <h3 style="color: #ffffff">Exportar</h3>
+                                    <h:commandLink>
+                                        <p:graphicImage name="/img/excel.png" width="40px"/>
+                                        <p:dataExporter type="xls" target="tablaMostrarPersonas" fileName="registro" pageOnly="true"/>
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage name="/img/pdf.png" width="40px"/>
+                                        <p:dataExporter type="pdf" target="tablaMostrarPersonas" fileName="registro" pageOnly="true" />
+                                    </h:commandLink>
+
+
+                                </h:form>
+
+
+
+                                <p:dialog id="dlgActulizarPersonas" header="Editar Registro" widgetVar="dlgEditar" showEffect="drop" hideEffect="drop" modal="true">
+                                    <h:form id="formActualizar">
+                                        <h:panelGrid columns="2" style="margin: 0 auto; font-size: 11px;">
+                                            <p:outputLabel value="CURP"/>
+                                            <p:inputText id="CURP" validatorMessage="CURP debe tener 18 digitos" value="#{beanPersonas.persona.curp}"  class="form-control" required="true" requiredMessage="CURP es obligatorio">
+                                                <f:validateLength minimum="18" maximum="18" />
+                                                <p:clientValidator />
+                                            </p:inputText>
+
+                                            <p:outputLabel value="Nombre Completo"/>
+                                            <p:inputText value="#{beanPersonas.persona.nombreCompleto}"
+                                                         required="true" requiredMessage="Nombre es obligatorio"/>
+
+                                            <p:outputLabel value="Apellido Paterno"/>
+                                            <p:inputText value="#{beanPersonas.persona.apellidoPaterno}"
+                                                         />
+
+                                            <p:outputLabel value="Apellido Materno"/>
+                                            <p:inputText value="#{beanPersonas.persona.apellidoMaterno}"
+                                                         />
+
+                                            <p:outputLabel value="Localidad"/>
+                                            <p:selectOneMenu id="localidad" value="#{beanPersonas.persona.municipios.idLocalidad}"
+                                                             required="true" requiredMessage="Seleccione un Municipio">
+                                                <f:selectItem itemLabel="---------Seleccione---------"/>
+                                                <f:selectItems value="#{beanPersonas.listarMunicipios}"/>
+                                                <f:ajax execute="localidad" render="promotores"/>
+
+                                            </p:selectOneMenu>
+
+                                            <p:outputLabel value="Promotores"/>
+                                            <p:selectOneMenu id="promotores" value="#{beanPersonas.persona.promotores.idPromotor}"
+                                                             required="true" requiredMessage="Seleccione una Promotor">
+                                                <f:selectItem itemLabel="---------Seleccione---------"/>
+                                                <f:selectItems value="#{beanPersonas.listarPromotores}"/>
+                                            </p:selectOneMenu>
+
+                                            <p:outputLabel value="Direccion"/>
+                                            <p:inputText value="#{beanPersonas.persona.direccion}"
+                                                         required="true" requiredMessage="Direccion es obligatorio"/>
+
+                                            <p:outputLabel value="Telefono"/>
+                                            <p:inputText value="#{beanPersonas.persona.telefono}"
+                                                         required="true" requiredMessage="Telefono es obligatorio"/>
+
+                                            <p:outputLabel value="Fecha de Nacimiento"/>
+                                            <p:calendar id="mask" value="#{beanPersonas.persona.fechaNacimineto}" pattern="dd-MM-yyyy" mask="true"  required="true" requiredMessage="Fecha de nacimiento es obligatorio"/>
+
+                                            <p:outputLabel value="Clave Electoral"/>
+                                            <p:inputText id="clave" validatorMessage="Clave electoral debe tener 18 digitos" class="form-control"  value="#{beanPersonas.persona.claveElectoral}"  required="true" requiredMessage="Clave electoral es obligatorio">
+                                                <f:validateLength minimum="18" maximum="18" />
+                                                <p:clientValidator />
+                                            </p:inputText>
+
+                                            <p:outputLabel value="Seccion"/>
+                                            <p:inputText id="seccion" class="form-control" validatorMessage="Seccion debe tener 4 caracteres" value="#{beanPersonas.persona.seccion}"  required="true" requiredMessage="Seccion es obligatorio">
+                                                <f:validateLength minimum="4" maximum="4" />
+                                                <p:clientValidator />
+                                            </p:inputText>
+
+
+
+                                            <p:commandButton value="Guardar Cambios" actionListener="#{beanPersonas.editarPersona()}" 
+                                                             oncomplete="PF('dlgEditar').hide();" update=":formMostrarPersonas:tablaMostrarPersonas"/>
+                                            <p:commandButton value="Cancelar" onclick="PF('dlgEditar').hide();" 
+                                                             immediate="true" />
+
+                                        </h:panelGrid>
+                                    </h:form>
+
+                                </p:dialog>
+
+
+                                <p:dialog id="dlgE" header="Eliminar Datos" widgetVar="dlgEliminar" showEffect="drop"
+                                          hideEffect="drop" modal="true">
+                                    <h:form id="formEliminarPersonas" style="font-size: 11px;">
+
+                                        <h:outputText value="¿Desea eliminar este registro? 
+                                                      "/> <br/>
+                                        <p:commandButton value="Si" actionListener="#{beanPersonas.eliminarPersona()}"
+                                                         update=":formMostrarPersonas:tablaMostrarPersonas" onclick="PF('dlgEliminar').hide();" immediate="true"/>
+                                        <p:commandButton value="No" onclick="PF('dlgEliminar').hide();"
+                                                         immediate="true"/>
+                                    </h:form>
+                                </p:dialog>
+
+
+
+
+
+
+
+                                <!-- /.row (nested) -->
+                            </div>
+
+
+                        </div>
+
+
+                    </main>
+
+                </div>
+            </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <footer id="gtco-footer" role="contentinfo" style="background-image: url(images/img_bg_1.jpg)" data-stellar-background-ratio="0.5">
+                <div class="overlay"></div>
+                <div class="gtco-container">
+                    <div class="row row-pb-md">
+
+
+
+
+
+
+                        <div class="col-md-12 text-center copyright">
+                            <p><small class="block">&copy; 2018 Todos los derechos Reservados</small> 
+                                <small class="block">Desarrollado por Conexiones del Camino Real</small></p>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </footer>
+            <!-- </div> -->
+
+        </div>
+
+        <div class="gototop js-top">
+            <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+        </div>
+
+        <h:outputScript name="/js/jquery.easing.1.3.js"/>  
+        <h:outputScript name="/js/bootstrap.min.js"/>  
+        <h:outputScript name="/js/jquery.waypoints.min.js"/>  
+        <h:outputScript name="/js/owl.carousel.min.js"/>  
+        <h:outputScript name="/js/jquery.countTo.js"/>  
+        <h:outputScript name="/js/jquery.stellar.min.js"/>  
+        <h:outputScript name="/js/jquery.magnific-popup.min.js"/>  
+        <h:outputScript name="/js/magnific-popup-options.js"/>  
+        <h:outputScript name="/js/moment.min.js"/>  
+        <h:outputScript name="/js/bootstrap-datetimepicker.min.js"/>  
+        <h:outputScript name="/js/main.js"/>  
+
+        <!-- jQuery -->
+
+        <!-- Bootstrap -->
+
+
+        <!-- Stellar Parallax -->
+
+
+    </h:body>
+</html>
